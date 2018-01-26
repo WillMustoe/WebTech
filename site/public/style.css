@@ -1,0 +1,38 @@
+/* The sidebar menu */
+.sidenav {
+  height: 100%;
+  width: 10em;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #385F71;
+  overflow-x: hidden;
+  padding-top: 4em;
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 0.4em 0.4em 0.4em 0.4em;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #F5F0F6;
+  display: block;
+  text-align: center;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  background-color: #5588a0;
+}
+
+/* Style page content */
+.main {
+  margin-left: 11em; /* Same as the width of the sidebar */
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  color: #385F71;
+}
