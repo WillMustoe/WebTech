@@ -1,7 +1,3 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-  console.log("DOM fully loaded and parsed");
-  setup();
-});
 var c;
 var ctx;
 var scl = 50;
@@ -15,9 +11,7 @@ function setup(){
   c = document.getElementById("canvas");
   ctx = c.getContext("2d");
   ctx.moveTo(0,0);
-  c.width = 1000
-  c.height = 700
-  console.log(c.width, c.height);
+  canvas_resize();
   rows = c.width/scl;
   cols = c.height/scl;
   var timer = setInterval( draw, 1000/30);
@@ -38,9 +32,20 @@ function draw(){
   ctx.stroke();
 }
 
+function canvas_resize(){
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+  rows = c.width/scl;
+  cols = c.height/scl;
+}
+
 
 CanvasRenderingContext2D.prototype.clear =
 CanvasRenderingContext2D.prototype.clear || function () {
   this.clearRect(0, 0, this.canvas.width, this.canvas.height);
   this.beginPath();
 };
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  setup();
+});

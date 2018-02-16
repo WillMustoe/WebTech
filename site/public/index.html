@@ -11,21 +11,25 @@ lang="en-GB" xml:lang="en-GB">
   <title>Noiser.js</title>
   <link rel="icon" href="img/icon.png"/>
 </head>
-<body>
-  <div id="sidenav" class="sidenav">
-    <img src="img/logo.svg" class="logo center"/>
-    <a class="closeButton" onclick="closeSideBar()">Close &#xd7;</a>
-    <a href="#">Create</a>
-    <a href="#">Top</a>
-    <a href="#">Newest</a>
-    <a href="#">Profile</a>
+<body onresize ="canvas_resize()" >
+  <div id="lp">
   </div>
-  <div id="main" class="main">
-    <div class="bgColour">
-      <button id="openNav" onclick="openSideBar()">&#9776;</button>
-      <h1>Noiser.js</h1>
+  <div id="create">
+    <div id="sidenav" class="sidenav slide-out">
+      <img src="img/logo.svg" class="logo center"/>
+      <a class="closeButton" onclick="closeSideBar()">Close &#xd7;</a>
+      <a href="#">Create</a>
+      <a href="#">Top</a>
+      <a href="#">Newest</a>
+      <a href="#">Profile</a>
     </div>
-    <canvas id="canvas"></canvas>
+    <div id="main" class="main">
+      <div class="bgColour">
+        <button id="openNav" onclick="openSideBar()">&#9776;</button>
+        <h1>Noiser.js</h1>
+      </div>
+      <canvas id="canvas"></canvas>
+    </div>
   </div>
 </body>
 </html>
