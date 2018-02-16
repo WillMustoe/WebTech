@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 lang="en-GB" xml:lang="en-GB">
+<script src="pgCtrl.js"></script>
+<script src="canvasctrl.js"></script>
 <head>
   <meta charset="UTF-8"/>
   <link href="style.css"
   rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
-  <title>Put Title Here</title>
+  <title>Noiser.js</title>
+  <link rel="icon" href="img/icon.png"/>
 </head>
 <body>
-  <div class="sidenav">
-    <a href="#">Home</a>
-    <a href="#">Pg1</a>
-    <a href="#">Pg2</a>
-    <a href="#">Pg3</a>
+  <div id="sidenav" class="sidenav">
+    <img src="img/logo.svg" class="logo center"/>
+    <a class="closeButton" onclick="closeSideBar()">Close &#xd7;</a>
+    <a href="#">Create</a>
+    <a href="#">Top</a>
+    <a href="#">Newest</a>
+    <a href="#">Profile</a>
   </div>
-  <div class="main">
-    <h1>Home Heading</h1>
+  <div id="main" class="main">
+    <div class="bgColour">
+      <button id="openNav" onclick="openSideBar()">&#9776;</button>
+      <h1>Noiser.js</h1>
+    </div>
+    <canvas id="canvas"></canvas>
   </div>
 </body>
 </html>

@@ -1,3 +1,14 @@
+.main {
+  font-family: 'Open Sans', sans-serif;
+  color: #385F71;
+  width: auto;
+  transition:margin-left .4s
+}
+
+.closeButton{
+  padding: 1em 0.4em 1em 0.4em !important;
+}
+
 /* The sidebar menu */
 .sidenav {
   height: 100%;
@@ -8,7 +19,10 @@
   left: 0;
   background-color: #385F71;
   overflow-x: hidden;
-  padding-top: 4em;
+  padding-top: 1em;
+  display: none;
+  box-shadow:0 2px 5px 0;
+  animation:animateleft 0.4s}@keyframes animateleft{from{left:-10em;opacity:0} to{left:0;opacity:1};
 }
 
 /* The navigation menu links */
@@ -27,12 +41,42 @@
   background-color: #5588a0;
 }
 
-/* Style page content */
-.main {
-  margin-left: 11em; /* Same as the width of the sidebar */
+.bgColour{
+  background-color: #f5f0f6 !important;
+}
+
+button{
+  color: #385F71;
+  background-color: inherit;
+  border: none;
+  padding: 0.25em 0.25em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2em;
+  position: relative;
 }
 
 h1 {
+  position: relative;
+  padding: 0.25em 0.25em;
   font-family: 'Open Sans', sans-serif;
   color: #385F71;
+  display: inline-block;
+}
+
+body {
+  margin: 0;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.logo{
+  padding-bottom: 1.5em;
+  width: 80%;
 }
