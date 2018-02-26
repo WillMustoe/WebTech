@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 lang="en-GB" xml:lang="en-GB">
-<script src="pgCtrl.js"></script>
-<script src="canvasctrl.js"></script>
+<script data-main="js/pgCtrl.js" src="js/require.js"></script>
+<script src="js/pgCtrl.js"></script>
+<script src="js/canvasctrl.js"></script>
+<script src="js/noise.js"></script>
 <head>
   <meta charset="UTF-8"/>
-  <link href="style.css"
+  <link href="css/style.css"
   rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
   <title>Noiser.js</title>
   <link rel="icon" href="img/icon.png"/>
 </head>
-<body onresize ="canvas_resize()" >
-  <div id="lp">
-  </div>
-  <div id="create">
-    <div id="sidenav" class="sidenav slide-out">
-      <img src="img/logo.svg" class="logo center"/>
-      <a class="closeButton" onclick="closeSideBar()">Close &#xd7;</a>
-      <a href="#">Create</a>
-      <a href="#">Top</a>
-      <a href="#">Newest</a>
-      <a href="#">Profile</a>
+<body id="body" >
+  <div id="pages-main" class="perspective">
+    <div id="lp" class="page page-lp">
     </div>
-    <div id="main" class="main">
-      <div class="bgColour">
-        <button id="openNav" onclick="openSideBar()">&#9776;</button>
-        <h1>Noiser.js</h1>
+    <div id="create" class = "page page-create">
+      <div id="sidenav" class="sidenav slide-out">
+        <img src="img/logo.svg" class="logo center"/>
+        <a id="closeNav" class="closeButton">Close &#xd7;</a>
+        <a href="#">Create</a>
+        <a href="#">Top</a>
+        <a href="#">Newest</a>
+        <a href="#">Profile</a>
       </div>
-      <canvas id="canvas"></canvas>
+      <div id="main" class="main">
+        <div class="bgColour">
+          <button id="openNav">&#9776;</button>
+          <h1>Noiser.js</h1>
+        </div>
+        <canvas id="canvas"></canvas>
+      </div>
     </div>
   </div>
 </body>
