@@ -29,7 +29,14 @@ lang="en-GB" xml:lang="en-GB">
       <div id="main" class="main">
         <div class="bgColour">
           <button id="openNav">&#9776;</button>
+          <button id="draw" onclick="draw()">Draw</button>
           <h1>Noiser.js</h1>
+          <div class="slidecontainer">
+            <input type="range" min="2" max="100" value="5" class="slider" id="resSlider"></input>
+          </div>
+          <div class="slidecontainer">
+            <input type="range" min="2" max="1000" value="5" class="slider" id="scaleSlider"></input>
+          </div>
         </div>
         <canvas id="canvas"></canvas>
       </div>
