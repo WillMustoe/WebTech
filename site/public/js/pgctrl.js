@@ -10,8 +10,6 @@ function start(){
   closeNav.addEventListener('click', closeSideBar); 
 }
 
-
-
 function openSideBar() {
   document.getElementById("main").style.marginLeft = "10em";
   document.getElementById("sidenav").style.left = "0";

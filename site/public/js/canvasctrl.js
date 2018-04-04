@@ -1,7 +1,7 @@
 var c;
 var ctx;
-var scl = 10;
-var res = 70;
+var scl = 5;
+var res = 12;
 var rows;
 var cols;
 var offset = 0;
