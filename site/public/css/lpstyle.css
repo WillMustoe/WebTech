@@ -1,0 +1,86 @@
+body, html {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+}
+
+.bg { 
+    background-image: url("/img/lpbg.svg");
+    position: fixed;
+    /* Full height */
+    height: 100%;
+    width: 100%; 
+
+    /* Center and scale the image  */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login{
+    width: 18%;
+    height: 68%;
+    left : 75%;
+    top : -25px; /* Hide top radius and shadow */
+    background-color: #E2E2E2;
+    position: fixed;
+    box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.login:hover{
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+input{
+    border: none;
+    width: 80%;
+    height : 1.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9em;
+}
+
+.textbox{
+    position: relative;
+    display: inline-block;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+    height : 3em;
+    margin : 6% 0;
+    top : 36%;
+}
+
+.full-width{
+    width : 85%;
+    left: 8%;
+}
+
+.half-width{
+    width :38%;
+    height : 3em;
+}
+.left{
+    left: 8%;
+}
+
+.right{
+    left : 16%;
+}
+
+.login-button{
+    border: none;
+    background-color: #8A8A8A;
+    color: #FEFEFE;
+    font-size: 0.9em;
+    transition: 0.4s;
+}
+
+.login-button:hover{
+    background-color: rgba(138, 138, 138, 0.6);
+}

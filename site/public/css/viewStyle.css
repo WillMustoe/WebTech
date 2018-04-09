@@ -15,7 +15,9 @@
 }
 
 .cardSpace {
+    padding-top: 4em;
     margin: 1em;
+    transition: 0.3s;
 }
 
 .cardImage {

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
 <script data-main="../js/pgCtrl.js" src="../js/require.js"></script>
-<script src="../js/pgCtrl.js"></script>
-<script src="../js/viewCtrl.js"></script>
+<script src="../js/pgctrl.js"></script>
+<script src="../js/viewctrl.js"></script>
 
 <head>
     <meta charset="UTF-8" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
-    <link href="../css/viewStyle.css" rel="stylesheet" type="text/css" />
+    <link href="../css/viewstyle.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
     <title>Noiser.js</title>
     <link rel="icon" href="../img/icon.png" />
@@ -19,13 +19,13 @@
       </div>
       <div id="create" class = "page page-create">
         <div id="sidenav" class="sidenav slide-out">
-          <img src="../img/logo.svg" class="logo center"/>
+          <img src="../img/logo.png" class="logo center"/>
           <a id="closeNav" class="closeButton">Close &#xd7;</a>
           <a href="play.html">Create</a>
         </div>
         <div id="main" class="main">
-          <div class="bgColour">
-            <button id="openNav">&#9776;</button>
+          <div class="bgColour topmenu">
+            <button id="openNav" class="side-button">&#9776;</button>
             <h1>Noiser.js</h1>
             <h1>View</h1>
           </div>
@@ -40,7 +40,7 @@
 
   <template id="cardTemplate">
       <div id="cardContent" class="card">
-        <img id="cardImage" class="cardImage" src="../img/notFound.svg" />
+        <img id="cardImage" class="cardImage" src="../img/notfound.svg" />
         <p id="name">Name: </p>
         <p id="user">User: </p>
         <p id="score">Score: </p>
