@@ -38,7 +38,7 @@
      showgrid="false"
      inkscape:zoom="0.78356164"
      inkscape:cx="756.36364"
-     inkscape:cy="394.35315"
+     inkscape:cy="598.54896"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -97,6 +97,22 @@
          in2="result1"
          id="feComposite3753" />
     </filter>
+    <style
+       id="style848">
+      .cls-1, .cls-2 {
+        fill: rgba(255,255,255,0.73);
+        font-family: OpenSans-Regular, Open Sans;
+        letter-spacing: 0.003em;
+      }
+
+      .cls-1 {
+        font-size: 150px;
+      }
+
+      .cls-2 {
+        font-size: 40px;
+      }
+    </style>
   </defs>
   <g
      style="opacity:0.48300003;fill:#385f71;fill-opacity:1;stroke:#707070"
@@ -134,5 +150,34 @@
        class="cls-2"
        data-name="Union 1"
        id="Union_1-2" />
+  </g>
+  <g
+     transform="translate(-12.725272,36.701459)"
+     data-name="Group 1"
+     id="Group_1"
+     style="fill:#ffffff;fill-opacity:0.78391957;stroke:none">
+    <text
+       transform="rotate(20,-889.49802,2058.7159)"
+       class="cls-1"
+       id="Noiser.js"
+       style="font-size:150px;font-family:OpenSans-Regular, 'Open Sans';letter-spacing:0.003em;fill:#ffffff;fill-opacity:0.78391957;stroke:none">
+      <tspan
+         id="tspan852"
+         y="0"
+         x="-305.79199"
+         style="fill:#ffffff;fill-opacity:0.78391957;stroke:none">Noiser.js</tspan>
+    </text>
+    <text
+       transform="rotate(20,-981.53264,1785.4874)"
+       class="cls-2"
+       data-name="Perlin Noise Visualiser"
+       id="Perlin_Noise_Visualiser"
+       style="font-size:40px;font-family:OpenSans-Regular, 'Open Sans';letter-spacing:0.003em;fill:#ffffff;fill-opacity:0.78391957;stroke:none">
+      <tspan
+         id="tspan855"
+         y="0"
+         x="-207.453"
+         style="fill:#ffffff;fill-opacity:0.78391957;stroke:none">Perlin Noise Visualiser</tspan>
+    </text>
   </g>
 </svg>

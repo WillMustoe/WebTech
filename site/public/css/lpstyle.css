@@ -17,6 +17,11 @@ body, html {
     background-size: cover;
 }
 
+.logo-title{
+    width : 60%;
+    height: 60%;
+}
+
 .login{
     width: 18%;
     height: 68%;
@@ -35,14 +40,18 @@ body, html {
 
 input{
     border: none;
-    width: 80%;
-    height : 1.5em;
+    width: 90%;
+    height : 2em;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     font-family: 'Open Sans', sans-serif;
     font-size: 0.9em;
+}
+
+input:focus{
+    outline: none;
 }
 
 .textbox{
@@ -52,7 +61,7 @@ input{
     border-radius: 2px;
     box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
     height : 3em;
-    margin : 6% 0;
+    margin : 5% 0;
     top : 36%;
 }
 
@@ -83,4 +92,11 @@ input{
 
 .login-button:hover{
     background-color: rgba(138, 138, 138, 0.6);
+}
+.logo-login{
+    position: relative;
+    top : 5%;
+    height : 30%;
+    margin: 0 auto;
+    padding: 0 0 10% 0;
 }

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 644.864 401.014">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: rgba(255,255,255,0.73);
+        font-family: OpenSans-Regular, Open Sans;
+        letter-spacing: 0.003em;
+      }
+
+      .cls-1 {
+        font-size: 150px;
+      }
+
+      .cls-2 {
+        font-size: 40px;
+      }
+    </style>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(-347.884 -173.373)">
+    <text id="Noiser.js" class="cls-1" transform="translate(650.479 428.382) rotate(20)"><tspan x="-305.792" y="0">Noiser.js</tspan></text>
+    <text id="Perlin_Noise_Visualiser" data-name="Perlin Noise Visualiser" class="cls-2" transform="translate(551.479 443.382) rotate(20)"><tspan x="-207.453" y="0">Perlin Noise Visualiser</tspan></text>
+  </g>
+</svg>
