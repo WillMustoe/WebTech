@@ -82,7 +82,7 @@ input:focus{
     left : 16%;
 }
 
-.login-button{
+.button{
     border: none;
     background-color: #8A8A8A;
     color: #FEFEFE;
@@ -90,7 +90,7 @@ input:focus{
     transition: 0.4s;
 }
 
-.login-button:hover{
+.button:hover{
     background-color: rgba(138, 138, 138, 0.6);
 }
 .logo-login{
@@ -99,4 +99,16 @@ input:focus{
     height : 30%;
     margin: 0 auto;
     padding: 0 0 10% 0;
+}
+
+.center-bottom{
+    position: relative;
+    top: 70%;
+    left: 45%;
+}
+
+.big-button{
+    width: 5em;
+    height: 1.5em;
+    font-size: 1.5em;
 }

@@ -1,6 +1,6 @@
 var c;
 var ctx;
-var scl = 5;
+var scl = 100;
 var res = 12;
 var rows;
 var cols;
