@@ -145,6 +145,8 @@ function defineTypes() {
         mp4  : "video/mp4",
         webm : "video/webm",
         ico  : "image/x-icon", // just for favicon.ico
+        vert : "x-shader/x-fragment",
+        frag : "x-shader/x-fragment",
         xhtml: undefined,      // non-standard, use .html
         htm  : undefined,      // non-standard, use .html
         rar  : undefined,      // non-standard, platform dependent, use .zip

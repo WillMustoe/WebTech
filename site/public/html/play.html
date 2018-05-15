@@ -1,47 +1,57 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-lang="en-GB" xml:lang="en-GB">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
 <script data-main="../js/pgCtrl.js" src="../js/require.js"></script>
+<script src="../js/glhost.js"></script>
+<script src="../js/program.js"></script>
 <script src="../js/pgctrl.js"></script>
 <script src="../js/canvasctrl.js"></script>
 <script src="../js/noise.js"></script>
+<script src="../js/point.js"></script>
+<script id="idvert" src="../webgl/id.vert" type="x-shader/x-fragment"></script>
+<script id="perlinfrag" src="../webgl/perlin.frag" type="x-shader/x-fragment"></script>
+
+
 <head>
-  <meta charset="UTF-8"/>
-  <link href="../css/style.css"
-  rel="stylesheet" type="text/css" />
-  <link href="../css/createstyle.css"
-  rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <link href="../css/createstyle.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
   <title>Noiser.js</title>
-  <link rel="icon" href="../img/icon.png"/>
+  <link rel="icon" href="../img/icon.png" />
 </head>
-<body id="body" >
-  <div id="pages-main" class="perspective">
-    <div id="lp" class="page page-lp">
+
+<body id="body">
+  <div id="create" class="page page-create">
+    <div id="sidenav" class="sidenav slide-out">
+      <img src="../img/logo.png" class="logo center" />
+      <a id="closeNav" class="closeButton">Close &#xd7;</a>
+      <a href="view.html">View</a>
     </div>
-    <div id="create" class = "page page-create">
-      <div id="sidenav" class="sidenav slide-out">
-        <img src="../img/logo.png" class="logo center"/>
-        <a id="closeNav" class="closeButton">Close &#xd7;</a>
-        <a href="view.html">View</a>
-      </div>
-      <div id="main" class="main">
-        <div class="bgColour topmenu">
-          <button id="openNav" class="side-button">&#9776;</button>
-          <h1>Noiser.js</h1>
-          <h1>Create</h1>
-          <div class="slidecontainer">
-              <label for="resSlider">Resolution</label>
-            <input type="range" min="2" max="100" value="3" class="slider" id="resSlider"></input>
-          </div>
-          <div class="slidecontainer">
-              <label for="scaleSlider">Depth</label>
-            <input type="range" min="2" max="1000" value="500" class="slider" id="scaleSlider"></input>
-          </div>
+    <div id="main" class="main">
+      <div class="bgColour topmenu">
+        <button id="openNav" class="side-button">&#9776;</button>
+        <h1>Noiser.js</h1>
+        <h1>Create</h1>
+        <div class="slidecontainer">
+          <label for="resSlider">Resolution</label>
+          <input type="range" min="10" max="500" value="12" class="slider" id="scaleSlider"></input>
         </div>
-        <canvas id="canvas"></canvas>
+        <div class="slidecontainer">
+          <label for="scaleSlider">Depth</label>
+          <input type="range" min="0" max="100" value="30" class="slider" id="depthSlider"></input>
+        </div>
+        <div class="colourcontainer">
+            <label for="colourpicker">Foreground Colour</label>
+          <input class="colour" type="color" id="colourpicker"></input>
+        </div>
+        <div class="colourcontainer">
+            <label for="colourpickerbg">Background Colour</label>
+          <input class="colour" type="color" id="colourpickerbg"></input>
+        </div>
       </div>
+      <canvas id="canvas"></canvas>
     </div>
   </div>
 </body>
+
 </html>
