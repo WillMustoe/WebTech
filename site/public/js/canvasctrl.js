@@ -1,3 +1,7 @@
+"use strict"
+
+var baseURL = window.location.origin + '/';
+
 var c;
 var ctx;
 var glHost;
@@ -21,8 +25,7 @@ if (window.requestAnimationFrame == null) {
 function setup() {
   c = document.getElementById("canvas");
   try {
-    var webgl = c.getContext('webgl') ||
-      c.getContext('experimental-webgl');
+    var webgl = c.getContext('webgl', {preserveDrawingBuffer: true}) || c.getContext('experimental-webgl', {preserveDrawingBuffer: true});
     if (webgl == null) throw new Error('Could not get WebGL context.');
     glHost = new GLHost(webgl);
   } catch (e) {
@@ -44,6 +47,17 @@ function setup() {
 
   var colourPickerbg = document.getElementById("colourpickerbg");
   colourPickerbg.oninput = colourPickerUpdateBG;
+
+  var saveButton = document.getElementById("savebutton");
+  saveButton.onclick = saveButtonClick;
+
+  var saveBG = document.getElementById("saveBackground");
+  saveBG.onclick = toggleSaveDialog;
+
+  var saveDialogButton = document.getElementById("saveDialogButton");
+  saveDialogButton.onclick = saveDialogButtonClick;
+
+  saveDialogButton
   
 }
 
@@ -82,21 +96,72 @@ function depthSliderUpdate() {
 }
 
 function colourPickerUpdate(){
-  hex = this.value;
+  var hex = this.value;
   colour = colourToFloats(hex);
 }
 
 function colourPickerUpdateBG(){
-  hex = this.value;
+  var hex = this.value;
   colourbg = colourToFloats(hex);
 }
 
 function colourToFloats(hex){
-  r = Number(parseInt(hex[1] + hex[2], 16))/255;
-  g = Number(parseInt(hex[3] + hex[4], 16))/255;
-  b = Number(parseInt(hex[5] + hex[6], 16))/255;
+  var r = Number(parseInt(hex[1] + hex[2], 16))/255;
+  var g = Number(parseInt(hex[3] + hex[4], 16))/255;
+  var b = Number(parseInt(hex[5] + hex[6], 16))/255;
 
   return {r, g, b};
+}
+
+function saveDialogButtonClick(){
+  var imgName = document.getElementById("imageName");
+    if(imgName.value == ""){
+      imgName.focus();
+        alert("Image name is required");
+        return;
+    }
+
+    var imageData = {
+      img : canvas.toDataURL('image/png'),
+      imgName : imgName
+    }
+    post(baseURL + "img", imageData);
+    var imgName = document.getElementById("imageName").value ="";
+    toggleSaveDialog();
+}
+
+function saveButtonClick(){
+  toggleSaveDialog();
+}
+
+function toggleSaveDialog() {
+  var popup = document.getElementById("saveBackground");
+  popup.classList.toggle("show");
+  var saveBox = document.getElementById("saveForm");
+  saveBox.classList.toggle("show");
+}
+
+function post(url, details) {
+  var params = Object.keys(details).map(
+      function (key) {
+          return encodeURIComponent(key) + '=' + encodeURIComponent(details[key])
+      }
+  ).join('&');
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', url);
+  xhr.onreadystatechange = function () {
+      if (this.readyState == this.DONE && this.status == 200) {
+          location.href = this.responseURL;
+      }
+      else if(this.readyState == this.DONE && (this.status == 400 || this.status == 401)){
+          alert(this.responseText);
+      }
+  };
+  xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send(params);
+  return xhr;
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {

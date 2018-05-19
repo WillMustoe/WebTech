@@ -35,11 +35,11 @@
         <h1>Noiser.js</h1>
         <h1>Create</h1>
         <div class="slidecontainer">
-          <label for="resSlider">Resolution</label>
+          <label for="resSlider">Scale</label>
           <input type="range" min="10" max="500" value="12" class="slider" id="scaleSlider"></input>
         </div>
         <div class="slidecontainer">
-          <label for="scaleSlider">Depth</label>
+          <label for="scaleSlider">Speed</label>
           <input type="range" min="0" max="100" value="30" class="slider" id="depthSlider"></input>
         </div>
         <div class="colourcontainer">
@@ -50,10 +50,20 @@
             <label for="colourpickerbg">Background Colour</label>
           <input class="colour" type="color" id="colourpickerbg"></input>
         </div>
+        <button id="savebutton" class="button" >Save</button>
       </div>
       <canvas id="canvas"></canvas>
     </div>
+    <div id="saveBackground" class="popup">
+      </div>
+      <form id="saveForm" class="center saveBox">
+          <div>
+              <input class="textInput" id="imageName" type="text" placeholder="Name" required="true" />
+          </div>
+          <button type="button" id="saveDialogButton" class="largeButton">Save</button>
+      </form>
   </div>
+
 </body>
 
 </html>

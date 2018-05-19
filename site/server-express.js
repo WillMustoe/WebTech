@@ -3,7 +3,18 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var User = require('./model/users');
-var Sequelize = require('sequelize')
+var Img = require('./model/img');
+var Sequelize = require('sequelize');
+var fs = require('fs');
+var https = require('https');
+var http = require('http');
+
+var options = {
+    key: fs.readFileSync('ssl/server.key'),
+    cert: fs.readFileSync('ssl/server.crt'),
+    requestCert: false,
+    rejectUnauthorized: false
+};
 
 // invoke an instance of express application.
 var app = express();
@@ -11,11 +22,16 @@ var app = express();
 // set our application port
 app.set('port', 8080);
 
+app.disable('x-powered-by')
+
 app.use(express.static("public"));
+
+app.use('/favicon.ico', express.static('public/img/icon.ico'));
 
 // initialize body-parser to parse incoming parameters requests to req.body
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: true,
+    limit: '50mb'
 }));
 
 // initialize cookie-parser to allow us access the cookies stored in the browser. 
@@ -52,13 +68,89 @@ app.get('/view', (req, res) => {
     res.sendFile(__dirname + '/public/html/view.html');
 });
 
-app.get('/user', (req, res) => {
+app.get('/user', requiresLogin, function (req, res, next) {
+    res.sendFile(__dirname + '/public/html/user.html');
+});
+
+app.route('/img', requiresLogin)
+    .post(function (req, res) {
+        var img = req.body.img;
+        var fileID = saveToFile(img);
+        Img.create({
+                name: req.body.imgName,
+                filename: fileID,
+                score: 1
+            })
+            .then(user => {
+                res.status(200).send("Image Saved");
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+    });
+
+app.route('/userdata', requiresLogin)
+    .get(function (req, res) {
+        User.findOne({
+                where: {
+                    id: req.session.user.id
+                }
+            })
+            .then(function (user) {
+                if (user === null) {
+                    res.status(500).send("User not found");
+                } else {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({
+                        forename: user.forename,
+                        lastname: user.lastname,
+                        email: user.email
+                    }));
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    })
+    .put(function (req, res) {
+        var oldPassword = req.body.oldPassword;
+        var newPassword = req.body.newPassword;
+        console.log(req.session.user.id);
+        User.findOne({
+            where: {
+                id: req.session.user.id
+            }
+        }).then(function (user) {
+            if (!user) {
+                res.status(500).send("User not Found");
+            } else if (!user.validPassword(oldPassword)) {
+                res.status(401).send("Invalid Password");
+            } else {
+                user.updateAttributes({
+                    password: newPassword
+                })
+                res.status(200).send("Password Changed Successfully")
+            }
+        });
+
+    });
+
+function saveToFile(img) {
+    var ext = img.split(';')[0].match(/jpeg|png|gif/)[0];
+    var data = img.replace(/^data:image\/\w+;base64,/, "");
+    var fileID = guuid() + '.' + ext;
+    var buf = new Buffer(data, 'base64');
+    fs.writeFile('userImgs/' + fileID, buf);
+    return fileID;
+}
+
+function requiresLogin(req, res, next) {
     if (req.session.user && req.cookies.user_sid) {
-        res.sendFile(__dirname + '/public/html/user.html');
+        return next();
     } else {
         res.redirect('/');
     }
-});
+}
 
 
 // route for user signup
@@ -109,8 +201,8 @@ app.route('/signin')
 
 app.get('/signout', (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-        res.clearCookie('user_sid');  
-    } 
+        res.clearCookie('user_sid');
+    }
     res.redirect('/');
 });
 
@@ -120,5 +212,23 @@ app.use(function (req, res, next) {
 });
 
 
+//Utility Functions
+
+function guuid() {
+    return Math.random().toString(36).substr(2)
+        + Math.random().toString(36).substr(2)
+        + Math.random().toString(36).substr(2)
+        + Math.random().toString(36).substr(2);
+}
+
+
 // start the express server
-app.listen(app.get('port'), () => console.log(`App started on port ${app.get('port')}`));
+//app.listen(app.get('port'), () => console.log(`App started on port ${app.get('port')}`));
+
+var server = https.createServer(options, app).listen(9090, function () {
+    console.log("https server started at port " + 9090);
+});
+
+var server = http.createServer(app).listen(8080, function () {
+    console.log("http server started at port " + 8080);
+});
