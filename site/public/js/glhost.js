@@ -15,8 +15,8 @@ function GLHost(gl) {
 GLHost.prototype.depth = 100;
 GLHost.prototype.scale = 30;
 GLHost.prototype.seed = Math.random() *100;
-GLHost.prototype.r = 0.23;
-GLHost.prototype.g = 0.15;
+GLHost.prototype.r = 0.83;
+GLHost.prototype.g = 0.83;
 GLHost.prototype.b = 0.83;
 GLHost.prototype.r_bg = 0.02;
 GLHost.prototype.g_bg = 0.83;
