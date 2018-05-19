@@ -25,6 +25,7 @@ app.set('port', 8080);
 app.disable('x-powered-by')
 
 app.use(express.static("public"));
+app.use(express.static("userImgs"));
 
 app.use('/favicon.ico', express.static('public/img/icon.ico'));
 
@@ -72,8 +73,9 @@ app.get('/user', requiresLogin, function (req, res, next) {
     res.sendFile(__dirname + '/public/html/user.html');
 });
 
-app.route('/img', requiresLogin)
-    .post(function (req, res) {
+
+app.route('/img')
+    .post(requiresLogin, function (req, res) {
         var img = req.body.img;
         var fileID = saveToFile(img);
         Img.create({
@@ -84,7 +86,17 @@ app.route('/img', requiresLogin)
             .then(user => {
                 res.status(200).send("Image Saved");
             })
-            .catch(error =>{
+            .catch(error => {
+                console.log(error);
+            })
+    })
+    .get(function (req, res) {
+        Img.findAll()
+            .then(function (imgs) {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).send(JSON.stringify(imgs));
+            })
+            .catch(error => {
                 console.log(error);
             })
     });
@@ -209,16 +221,17 @@ app.get('/signout', (req, res) => {
 
 app.use(function (req, res, next) {
     res.status(404).send("Sorry can't find that!")
+    console.log(req);
 });
 
 
 //Utility Functions
 
 function guuid() {
-    return Math.random().toString(36).substr(2)
-        + Math.random().toString(36).substr(2)
-        + Math.random().toString(36).substr(2)
-        + Math.random().toString(36).substr(2);
+    return Math.random().toString(36).substr(2) +
+        Math.random().toString(36).substr(2) +
+        Math.random().toString(36).substr(2) +
+        Math.random().toString(36).substr(2);
 }
 
 

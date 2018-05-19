@@ -1,6 +1,7 @@
 "use strict"
 
 addEventListener('load', start);
+var baseURL = window.location.origin + '/';
 
 var cards = [];
 
@@ -57,20 +58,34 @@ cards.push(
     }
 );
 
-function updateCards(){
+function get(url, handler) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var jsonData = JSON.parse(this.responseText);
+            handler(jsonData);
+        }
+    };
+    xhr.open("GET", url, true);
+    xhr.send(null);
+}
+
+function updateCards(cards){
+    console.log(cards);
     var template = document.getElementById("cardTemplate");
     var cardContent = template.content.getElementById("cardContent");
     var cardSpace = document.getElementById("cardSpace");
+    cardSpace.innerHTML ="";
     cards.forEach(function(card){
         var a = document.importNode(cardContent, true);
-        a.querySelector("#cardImage").src = card.imgUrl;
+        a.querySelector("#cardImage").src = baseURL + card.filename;
         a.querySelector("#name").textContent += card.name;
-        a.querySelector("#user").textContent += card.user;
-        a.querySelector("#score").textContent += card.points;
+        //a.querySelector("#user").textContent += card.user;
+        a.querySelector("#score").textContent += card.score;
         cardSpace.appendChild(a);
     });
 }
 
 function start(){
-    updateCards();
+    get(baseURL + 'img', updateCards);
 }

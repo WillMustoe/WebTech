@@ -123,7 +123,7 @@ function saveDialogButtonClick(){
 
     var imageData = {
       img : canvas.toDataURL('image/png'),
-      imgName : imgName
+      imgName : imgName.value
     }
     post(baseURL + "img", imageData);
     var imgName = document.getElementById("imageName").value ="";
@@ -152,7 +152,7 @@ function post(url, details) {
   xhr.open('POST', url);
   xhr.onreadystatechange = function () {
       if (this.readyState == this.DONE && this.status == 200) {
-          location.href = this.responseURL;
+          alert("Image Saved Successfully");
       }
       else if(this.readyState == this.DONE && (this.status == 400 || this.status == 401)){
           alert(this.responseText);
