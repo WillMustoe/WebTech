@@ -76,11 +76,10 @@ app.route('/signup')
                 req.session.user = user.dataValues;
                 res.status(200).redirect('/user');
             })
-            .catch( error => {
-                if(error instanceof Sequelize.ValidationError){
+            .catch(error => {
+                if (error instanceof Sequelize.ValidationError) {
                     res.status(400).send("Email Already in Use");
-                }
-                else{
+                } else {
                     res.status(500).send("Unknown Internal Server Error");
                     console.log(error);
                 }
@@ -108,15 +107,12 @@ app.route('/signin')
         });
     });
 
-
-// middleware function to check for logged-in users
-function sessionChecker(req, res, next) {
+app.get('/signout', (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-        res.redirect('/');
-    } else {
-        next();
-    }
-};
+        res.clearCookie('user_sid');  
+    } 
+    res.redirect('/');
+});
 
 
 app.use(function (req, res, next) {
