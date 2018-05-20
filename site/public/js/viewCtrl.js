@@ -71,7 +71,6 @@ function get(url, handler) {
 }
 
 function updateCards(cards){
-    console.log(cards);
     var template = document.getElementById("cardTemplate");
     var cardContent = template.content.getElementById("cardContent");
     var cardSpace = document.getElementById("cardSpace");
@@ -80,8 +79,10 @@ function updateCards(cards){
         var a = document.importNode(cardContent, true);
         a.querySelector("#cardImage").src = baseURL + card.filename;
         a.querySelector("#name").textContent += card.name;
-        //a.querySelector("#user").textContent += card.user;
+        a.querySelector("#user").textContent += card.user.forename + " " + card.user.lastname;
         a.querySelector("#score").textContent += card.score;
+        a.querySelector("#downloadLink").href = baseURL + card.filename;
+        a.querySelector("#downloadLink").download = card.name;
         cardSpace.appendChild(a);
     });
 }

@@ -6,7 +6,7 @@ var c;
 var ctx;
 var glHost;
 var depth = 0.03;
-var scale = 12;
+var scale = 20;
 var colour = {r: 0.83, g: 0.83, b: 0.83};
 var colourbg = {r: 0.83, g: 0.83, b: 0.83};
 
@@ -44,9 +44,11 @@ function setup() {
 
   var colourPicker = document.getElementById("colourpicker");
   colourPicker.oninput = colourPickerUpdate;
+  colour = colourToFloats(colourPicker.value);
 
   var colourPickerbg = document.getElementById("colourpickerbg");
   colourPickerbg.oninput = colourPickerUpdateBG;
+  colourbg = colourToFloats(colourPickerbg.value);
 
   var saveButton = document.getElementById("savebutton");
   saveButton.onclick = saveButtonClick;
@@ -56,8 +58,6 @@ function setup() {
 
   var saveDialogButton = document.getElementById("saveDialogButton");
   saveDialogButton.onclick = saveDialogButtonClick;
-
-  saveDialogButton
   
 }
 

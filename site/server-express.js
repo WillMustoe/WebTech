@@ -9,6 +9,13 @@ var fs = require('fs');
 var https = require('https');
 var http = require('http');
 
+User.hasMany(Img, {
+    foreignKey: 'user_id'
+})
+Img.belongsTo(User, {
+    foreignKey: 'user_id'
+})
+
 var options = {
     key: fs.readFileSync('ssl/server.key'),
     cert: fs.readFileSync('ssl/server.crt'),
@@ -79,6 +86,7 @@ app.route('/img')
         var img = req.body.img;
         var fileID = saveToFile(img);
         Img.create({
+                user_id: req.session.user.user_id,
                 name: req.body.imgName,
                 filename: fileID,
                 score: 1
@@ -91,7 +99,39 @@ app.route('/img')
             })
     })
     .get(function (req, res) {
-        Img.findAll()
+        Img.findAll({
+                include: [User]
+            })
+            .then(function (imgs) {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).send(JSON.stringify(imgs));
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    })
+    .delete(requiresLogin, function(req, res) {
+        var img_id = req.body.img_id;
+        Img.findById(img_id).then(img => {
+            if(img == null){
+                res.status(404).send("Image to delete not found");
+            }
+            else{
+                deleteImgFile(img.filename);
+                img.destroy();
+                res.status(200).send("Image deleted");
+            }
+        })
+    });
+
+app.route('/userimgs', requiresLogin)
+    .get(function (req, res) {
+        Img.findAll({
+                where: {
+                    user_id: req.session.user.user_id
+                },
+                include: [User]
+            })
             .then(function (imgs) {
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).send(JSON.stringify(imgs));
@@ -105,7 +145,7 @@ app.route('/userdata', requiresLogin)
     .get(function (req, res) {
         User.findOne({
                 where: {
-                    id: req.session.user.id
+                    user_id: req.session.user.user_id
                 }
             })
             .then(function (user) {
@@ -130,7 +170,7 @@ app.route('/userdata', requiresLogin)
         console.log(req.session.user.id);
         User.findOne({
             where: {
-                id: req.session.user.id
+                user_id: req.session.user.user_id
             }
         }).then(function (user) {
             if (!user) {
@@ -146,23 +186,6 @@ app.route('/userdata', requiresLogin)
         });
 
     });
-
-function saveToFile(img) {
-    var ext = img.split(';')[0].match(/jpeg|png|gif/)[0];
-    var data = img.replace(/^data:image\/\w+;base64,/, "");
-    var fileID = guuid() + '.' + ext;
-    var buf = new Buffer(data, 'base64');
-    fs.writeFile('userImgs/' + fileID, buf);
-    return fileID;
-}
-
-function requiresLogin(req, res, next) {
-    if (req.session.user && req.cookies.user_sid) {
-        return next();
-    } else {
-        res.redirect('/');
-    }
-}
 
 
 // route for user signup
@@ -232,6 +255,26 @@ function guuid() {
         Math.random().toString(36).substr(2) +
         Math.random().toString(36).substr(2) +
         Math.random().toString(36).substr(2);
+}
+
+function saveToFile(img) {
+    var ext = img.split(';')[0].match(/jpeg|png|gif/)[0];
+    var data = img.replace(/^data:image\/\w+;base64,/, "");
+    var fileID = guuid() + '.' + ext;
+    var buf = new Buffer(data, 'base64');
+    fs.writeFile('userImgs/' + fileID, buf);
+    return fileID;
+}
+function deleteImgFile(filename){
+    fs.unlinkSync('userImgs/' + filename);
+}
+
+function requiresLogin(req, res, next) {
+    if (req.session.user && req.cookies.user_sid) {
+        return next();
+    } else {
+        res.redirect('/');
+    }
 }
 
 

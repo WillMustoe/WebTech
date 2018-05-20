@@ -16,6 +16,16 @@ const sequelize = new Sequelize('noiser', 'admin', 'StableOneTwoFour', {
 });
 
 var Img = sequelize.define('imgs', {
+    img_id: {
+        type : Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    user_id:{
+        type: Sequelize.INTEGER,
+        unique: false,
+        allowNull: false
+    },
     name: {
         type: Sequelize.STRING,
         unique: false,
@@ -32,6 +42,8 @@ var Img = sequelize.define('imgs', {
         allowNull: false
     }
 });
+
+
 
 
 // create all the defined tables in the specified database.

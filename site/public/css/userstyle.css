@@ -7,6 +7,7 @@ hr {
     border-color: #385F71;
     width: 100%;
     opacity: 0.6;
+    margin: 2em 0;
 }
 
 .cardSpace{
@@ -68,5 +69,13 @@ input:focus {
     border-radius: 2px;
     height: 3em;
     margin: 0.8em 8px;
-    width: 30%;
+    width: 20em;
+}
+
+.smallpadding{
+    padding: 1em !important;
+}
+
+#downloadLink{
+    color: white;
 }

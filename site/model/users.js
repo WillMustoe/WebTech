@@ -17,6 +17,11 @@ const sequelize = new Sequelize('noiser', 'admin', 'StableOneTwoFour', {
 });
 
 var User = sequelize.define('users', {
+    user_id: {
+        type : Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     forename: {
         type: Sequelize.STRING,
         unique: false,
