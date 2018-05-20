@@ -1,0 +1,80 @@
+.signinBox {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1.0;
+    padding: 1.5em 1em;
+    background-color: #E2E2E2;
+    border-radius: 2px;
+}
+
+
+.textbox {
+    position: relative;
+    display: block;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+    height: 3em;
+    margin: 0.5em 0;
+}
+
+input {
+    border: none;
+    width: 90%;
+    height: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9em;
+}
+
+.center-bottom {
+    position: relative;
+    top: 75%;
+    left: 20%;
+    margin-left: 1.6em;
+}
+
+.big-button {
+    width: 5em;
+    height: 1.5em;
+    font-size: 1.5em;
+}
+
+.button {
+    border: none;
+    background-color: #8A8A8A;
+    color: #FEFEFE;
+    font-size: 0.9em;
+    transition: 0.4s;
+}
+
+.button:hover {
+    background-color: rgba(138, 138, 138, 0.6);
+}
+
+.full-width {
+    width: 85%;
+    left: 8%;
+}
+
+.title{
+    position: relative;
+    color: #8A8A8A;
+    left: 8%;
+}
+
+#createAccount {
+    width: 90%;
+    text-align: center;
+    padding-top: 0.8em;
+    color: #8A8A8A;
+}
+
+#createAccount:hover {
+    color: #FEFEFE;
+}
