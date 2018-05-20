@@ -5,16 +5,8 @@ html {
     margin: 0;
 }
 
-.bg {
+.bg{
     background-image: url("/img/lpbg.svg");
-    position: fixed;
-    /* Full height */
-    height: 100%;
-    width: 100%;
-    /* Center and scale the image  */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .logo-title {
